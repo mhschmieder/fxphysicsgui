@@ -10,7 +10,7 @@
 	<version>0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>FxPhysicsGui</name>
+	<name>fxphysicsgui</name>
 	<url>https://github.com/mhschmieder/fxphysicsgui </url>
 	<description>JavaFX GUI and observable properties for physics concepts.</description>
 
