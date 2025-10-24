@@ -12,7 +12,7 @@
 
 	<name>fxphysicsgui</name>
 	<url>https://github.com/mhschmieder/fxphysicsgui</url>
-	<description>JavaFX GUI and observable properties for jphysiocs.</description>
+	<description>JavaFX GUI layout and observable properties for jphysics.</description>
 
 	<licenses>
 		<license>
