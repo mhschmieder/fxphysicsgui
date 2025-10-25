@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020, 2025 Mark Schmieder
+ * Copyright (c) 2020, 2025, Mark Schmieder. All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * This file is part of the FxPhysics Library
+ * This file is part of the fxphysicsgui Library
  *
- * You should have received a copy of the MIT License along with the FxPhysics
- * Library. If not, see <https://opensource.org/licenses/MIT>.
+ * You should have received a copy of the MIT License along with the
+ * fxphysicsgui Library. If not, see <https://opensource.org/licenses/MIT>.
  *
- * Project: https://github.com/mhschmieder/fxphysics
+ * Project: https://github.com/mhschmieder/fxphysicsgui
  */
 package com.mhschmieder.fxphysicsgui.stage;
 
@@ -74,10 +74,10 @@ public final class NaturalEnvironmentStage extends XStage {
     public NaturalEnvironment _naturalEnvironment;
     
     // Flag for whether vector graphics are supported.
-    protected final boolean _vectorGraphicsSupported;
+    private final boolean _vectorGraphicsSupported;
     
     // Flag for whether Use Air Attenuation should be initialized to on or off.
-    protected final boolean _initialUseAirAttenuation;
+    private final boolean _initialUseAirAttenuation;
 
     @SuppressWarnings("nls")
     public NaturalEnvironmentStage( final ProductBranding productBranding,
@@ -171,11 +171,11 @@ public final class NaturalEnvironmentStage extends XStage {
                 .bindBidirectional( _naturalEnvironment.airAttenuationAppliedProperty() );
     }
 
-    protected void doReset() {
+    private void doReset() {
         reset();
     }
 
-    protected void doUseAirAttenuationToggle() {
+    private void doUseAirAttenuationToggle() {
         // Toggle the state of the Use Air Attenuation Check Box.
         // NOTE: As this is tab-focus related, it must be performed on the
         // Check Box itself rather than on the associated action container.
@@ -183,7 +183,6 @@ public final class NaturalEnvironmentStage extends XStage {
                 .setSelected( !_toolBar._useAirAttenuationCheckBox.isSelected() );
     }
 
-    @SuppressWarnings("nls")
     protected void initStage( final boolean resizable ) {
         // First have the superclass initialize its content.
         initStage( "/icons/mhschmieder/TemperatureCelsius16.png",
@@ -296,7 +295,7 @@ public final class NaturalEnvironmentStage extends XStage {
         _naturalEnvironmentPane.toggleGestures();
     }
 
-    /**
+    /*
      * Propagate the new Distance Unit to the relevant subcomponents.
      */
     public void updateDistanceUnit( final DistanceUnit distanceUnit ) {
@@ -304,7 +303,7 @@ public final class NaturalEnvironmentStage extends XStage {
         _naturalEnvironmentPane.updateDistanceUnit( distanceUnit );
     }
 
-    /**
+    /*
      * Propagate the new Pressure Unit to the relevant subcomponents.
      */
     public void updatePressureUnit( final PressureUnit pressureUnit ) {
@@ -312,7 +311,7 @@ public final class NaturalEnvironmentStage extends XStage {
         _naturalEnvironmentPane.updatePressureUnit( pressureUnit );
     }
 
-    /**
+    /*
      * Propagate the new Temperature Unit to the relevant subcomponents.
      */
     public void updateTemperatureUnit( final TemperatureUnit temperatureUnit ) {
