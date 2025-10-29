@@ -37,7 +37,7 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.HumidityEditor;
 import com.mhschmieder.fxphysicscontrols.control.HumiditySlider;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
-import com.mhschmieder.fxphysicsgui.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

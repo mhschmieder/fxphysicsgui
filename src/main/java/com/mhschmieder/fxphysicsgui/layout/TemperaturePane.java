@@ -37,7 +37,7 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
 import com.mhschmieder.fxphysicscontrols.control.TemperatureEditor;
 import com.mhschmieder.fxphysicscontrols.control.TemperatureSlider;
-import com.mhschmieder.fxphysicsgui.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jphysics.PhysicsConstants;
 import com.mhschmieder.jphysics.TemperatureUnit;

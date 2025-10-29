@@ -30,8 +30,8 @@
  */
 package com.mhschmieder.fxphysicsgui.swing;
 
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.fxphysicsgui.layout.NaturalEnvironmentInformationPane;
-import com.mhschmieder.fxphysicsgui.model.NaturalEnvironment;
 import com.mhschmieder.jgui.component.DataViewXComponent;
 import com.mhschmieder.jphysics.PressureUnit;
 import com.mhschmieder.jphysics.TemperatureUnit;
