@@ -69,11 +69,6 @@
             <artifactId>fxphysicscontrols</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.mhschmieder</groupId>
-            <artifactId>jpdfreport</artifactId>
-            <version>0.1-SNAPSHOT</version>
-        </dependency>
 		<!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
 		<dependency>
 			<groupId>org.controlsfx</groupId>
