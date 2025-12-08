@@ -36,14 +36,8 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.jcommons.lang.StringConstants;
 import com.mhschmieder.jcommons.util.ClientProperties;
-import com.mhschmieder.jpdfreport.PdfFonts;
-import com.mhschmieder.jpdfreport.PdfTools;
 import com.mhschmieder.jphysics.PressureUnit;
 import com.mhschmieder.jphysics.TemperatureUnit;
-import com.pdfjet.Align;
-import com.pdfjet.PDF;
-import com.pdfjet.Page;
-import com.pdfjet.Point;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -249,11 +243,7 @@ public final class NaturalEnvironmentInformationPane extends VBox {
         updateLabels();
     }
 
-    public Point exportToPdf( final PDF document,
-                              final Page page,
-                              final Point initialPoint,
-                              final PdfFonts borderlessTableFonts )
-            throws Exception {
+    public String[] getNaturalEnvironmentInformation() {
         // Collect the information fields to render to a single-column table.
         final String[] information = new String[ 4 ];
         int i = 0;
@@ -261,15 +251,6 @@ public final class NaturalEnvironmentInformationPane extends VBox {
         information[ i++ ] = _temperatureLabel.getText();
         information[ i++ ] = _pressureLabel.getText();
         information[ i++ ] = _relativeHumidityLabel.getText();
-
-        // Write the Natural Environment Information Table, left-aligned.
-        final Point point = PdfTools.writeInformationTable( document,
-                                                            page,
-                                                            initialPoint,
-                                                            borderlessTableFonts,
-                                                            Align.LEFT,
-                                                            information );
-
-        return point;
+        return information;
     }
 }
