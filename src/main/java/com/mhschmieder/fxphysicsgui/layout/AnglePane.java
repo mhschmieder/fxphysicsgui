@@ -31,7 +31,7 @@
 package com.mhschmieder.fxphysicsgui.layout;
 
 import com.mhschmieder.fxcontrols.control.ControlUtilities;
-import com.mhschmieder.fxgraphics.input.ScrollingSensitivity;
+import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.fxphysicscontrols.control.AngleEditor;
 import com.mhschmieder.fxphysicscontrols.control.AngleSlider;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
