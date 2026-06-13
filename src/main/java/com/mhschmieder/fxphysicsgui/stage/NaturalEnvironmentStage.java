@@ -30,7 +30,6 @@
  */
 package com.mhschmieder.fxphysicsgui.stage;
 
-import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.fxgui.stage.XStage;
 import com.mhschmieder.fxphysicscontrols.action.NaturalEnvironmentActions;
 import com.mhschmieder.fxphysicscontrols.control.NaturalEnvironmentToolBar;
@@ -39,6 +38,7 @@ import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.fxphysicsgui.layout.NaturalEnvironmentPane;
 import com.mhschmieder.jcommons.branding.ProductBranding;
 import com.mhschmieder.jcommons.util.ClientProperties;
+import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.DistanceUnit;
 import com.mhschmieder.jphysics.PressureUnit;
 import com.mhschmieder.jphysics.TemperatureUnit;

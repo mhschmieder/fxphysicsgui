@@ -31,7 +31,6 @@
 package com.mhschmieder.fxphysicsgui.layout;
 
 import com.mhschmieder.fxcontrols.util.RegionUtilities;
-import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.fxgraphics.paint.ColorUtilities;
 import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
@@ -39,6 +38,7 @@ import com.mhschmieder.fxphysicscontrols.control.TemperatureEditor;
 import com.mhschmieder.fxphysicscontrols.control.TemperatureSlider;
 import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.jcommons.util.ClientProperties;
+import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.PhysicsConstants;
 import com.mhschmieder.jphysics.TemperatureUnit;
 import javafx.application.Platform;

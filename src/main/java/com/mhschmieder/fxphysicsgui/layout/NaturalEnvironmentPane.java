@@ -31,9 +31,9 @@
 package com.mhschmieder.fxphysicsgui.layout;
 
 import com.mhschmieder.fxcontrols.util.RegionUtilities;
-import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.jcommons.util.ClientProperties;
+import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.Altitude;
 import com.mhschmieder.jphysics.DistanceUnit;
 import com.mhschmieder.jphysics.PhysicsConstants;

@@ -31,11 +31,11 @@
 package com.mhschmieder.fxphysicsgui.layout;
 
 import com.mhschmieder.fxcontrols.control.ControlUtilities;
-import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.fxphysicscontrols.control.AngleEditor;
 import com.mhschmieder.fxphysicscontrols.control.AngleSlider;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
 import com.mhschmieder.jcommons.util.ClientProperties;
+import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.AngleUnit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
