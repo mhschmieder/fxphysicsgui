@@ -32,7 +32,7 @@ package com.mhschmieder.fxphysicsgui.layout;
 
 import com.mhschmieder.fxcontrols.control.ControlUtilities;
 import com.mhschmieder.jcommons.util.ClientProperties;
-import com.mhschmieder.jphysics.DistanceUnit;
+import com.mhschmieder.jphysics.measure.DistanceUnit;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;

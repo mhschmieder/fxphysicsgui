@@ -36,7 +36,7 @@ import com.mhschmieder.fxphysicscontrols.control.AngleSlider;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
-import com.mhschmieder.jphysics.AngleUnit;
+import com.mhschmieder.jphysics.measure.AngleUnit;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

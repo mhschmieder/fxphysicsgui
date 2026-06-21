@@ -40,7 +40,7 @@ import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.PhysicsConstants;
-import com.mhschmieder.jphysics.TemperatureUnit;
+import com.mhschmieder.jphysics.measure.TemperatureUnit;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;

@@ -34,8 +34,8 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.DistanceEditor;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
-import com.mhschmieder.jphysics.AngleUnit;
-import com.mhschmieder.jphysics.DistanceUnit;
+import com.mhschmieder.jphysics.measure.AngleUnit;
+import com.mhschmieder.jphysics.measure.DistanceUnit;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
