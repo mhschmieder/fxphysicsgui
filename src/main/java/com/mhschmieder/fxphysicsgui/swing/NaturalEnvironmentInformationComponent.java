@@ -32,7 +32,7 @@ package com.mhschmieder.fxphysicsgui.swing;
 
 import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
 import com.mhschmieder.fxphysicsgui.layout.NaturalEnvironmentInformationPane;
-import com.mhschmieder.jgui.component.DataViewXComponent;
+import com.mhschmieder.jgui.component.JxDataViewComponent;
 import com.mhschmieder.jphysics.measure.PressureUnit;
 import com.mhschmieder.jphysics.measure.TemperatureUnit;
 
@@ -43,7 +43,7 @@ import java.util.Locale;
 
 /**
  * {@code NaturalEnvironmentInformationTable} is a specialization of
- * {@link DataViewXComponent} that presents the current values of a
+ * {@link JxDataViewComponent} that presents the current values of a
  * {@link NaturalEnvironment} instance.
  * <p>
  * As this component hosts a read-only parameter set, it needs one number
@@ -57,7 +57,7 @@ import java.util.Locale;
  *
  * @author Mark Schmieder
  */
-public final class NaturalEnvironmentInformationTable extends DataViewXComponent {
+public final class NaturalEnvironmentInformationComponent extends JxDataViewComponent {
     /**
      *
      */
@@ -101,7 +101,7 @@ public final class NaturalEnvironmentInformationTable extends DataViewXComponent
      */
     protected NumberFormat     percentFormat;
 
-    public NaturalEnvironmentInformationTable() {
+    public NaturalEnvironmentInformationComponent() {
         // Always call the superclass constructor first!
         super();
 
