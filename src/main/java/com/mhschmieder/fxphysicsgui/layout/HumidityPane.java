@@ -36,7 +36,7 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.HumidityEditor;
 import com.mhschmieder.fxphysicscontrols.control.HumiditySlider;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import javafx.beans.property.DoubleProperty;
@@ -114,7 +114,7 @@ public final class HumidityPane extends VBox {
     }
 
     public void reset() {
-        _humiditySlider.setValue( NaturalEnvironment.HUMIDITY_RELATIVE_DEFAULT );
+        _humiditySlider.setValue( NaturalEnvironmentProperties.HUMIDITY_RELATIVE_DEFAULT );
     }
 
     public void setForegroundFromBackground( final Color backColor ) {

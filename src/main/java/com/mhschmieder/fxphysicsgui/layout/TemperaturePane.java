@@ -36,7 +36,7 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
 import com.mhschmieder.fxphysicscontrols.control.TemperatureEditor;
 import com.mhschmieder.fxphysicscontrols.control.TemperatureSlider;
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.PhysicsConstants;
@@ -142,7 +142,7 @@ public final class TemperaturePane extends VBox {
 
     public void reset() {
         _temperatureSlider.setTemperatureK(
-                NaturalEnvironment.TEMPERATURE_K_DEFAULT );
+                NaturalEnvironmentProperties.TEMPERATURE_K_DEFAULT );
     }
 
     public void setForegroundFromBackground( final Color backColor ) {

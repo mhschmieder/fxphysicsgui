@@ -34,7 +34,7 @@ import com.mhschmieder.fxgui.stage.XStage;
 import com.mhschmieder.fxphysicscontrols.action.NaturalEnvironmentActions;
 import com.mhschmieder.fxphysicscontrols.control.NaturalEnvironmentToolBar;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsMenuFactory;
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
 import com.mhschmieder.fxphysicsgui.layout.NaturalEnvironmentPane;
 import com.mhschmieder.jcommons.branding.ProductBranding;
 import com.mhschmieder.jcommons.util.ClientProperties;
@@ -71,7 +71,7 @@ public final class NaturalEnvironmentStage extends XStage {
     public NaturalEnvironmentPane _naturalEnvironmentPane;
 
     // Cache a reference to the global Natural Environment.
-    public NaturalEnvironment _naturalEnvironment;
+    public NaturalEnvironmentProperties _naturalEnvironmentProperties;
     
     // Flag for whether vector graphics are supported.
     private final boolean _vectorGraphicsSupported;
@@ -168,7 +168,7 @@ public final class NaturalEnvironmentStage extends XStage {
         // The Use Air Attenuation flag is a simple boolean so can be
         // bi-directionally bound to its corresponding check box.
         _toolBar._useAirAttenuationCheckBox.selectedProperty()
-                .bindBidirectional( _naturalEnvironment.airAttenuationAppliedProperty() );
+                .bindBidirectional( _naturalEnvironmentProperties.airAttenuationAppliedProperty() );
     }
 
     private void doReset() {
@@ -267,12 +267,12 @@ public final class NaturalEnvironmentStage extends XStage {
 
     // Set and propagate the Natural Environment reference.
     // NOTE: This should be done only once, to avoid breaking bindings.
-    public void setNaturalEnvironment( final NaturalEnvironment pNaturalEnvironment ) {
+    public void setNaturalEnvironment( final NaturalEnvironmentProperties pNaturalEnvironmentProperties) {
         // Cache the Natural Environment reference.
-        _naturalEnvironment = pNaturalEnvironment;
+        _naturalEnvironmentProperties = pNaturalEnvironmentProperties;
 
         // Forward this reference to the Natural Environment Pane.
-        _naturalEnvironmentPane.setNaturalEnvironment( _naturalEnvironment );
+        _naturalEnvironmentPane.setNaturalEnvironment(_naturalEnvironmentProperties);
 
         // Bind the data model to the respective GUI components.
         bindProperties();

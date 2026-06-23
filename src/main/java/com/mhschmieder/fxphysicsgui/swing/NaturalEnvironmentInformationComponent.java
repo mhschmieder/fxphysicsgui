@@ -30,8 +30,9 @@
  */
 package com.mhschmieder.fxphysicsgui.swing;
 
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
 import com.mhschmieder.fxphysicsgui.layout.NaturalEnvironmentInformationPane;
+import com.mhschmieder.jcommons.lang.StringConstants;
 import com.mhschmieder.jgui.component.JxDataViewComponent;
 import com.mhschmieder.jphysics.measure.PressureUnit;
 import com.mhschmieder.jphysics.measure.TemperatureUnit;
@@ -44,7 +45,7 @@ import java.util.Locale;
 /**
  * {@code NaturalEnvironmentInformationTable} is a specialization of
  * {@link JxDataViewComponent} that presents the current values of a
- * {@link NaturalEnvironment} instance.
+ * {@link NaturalEnvironmentProperties} instance.
  * <p>
  * As this component hosts a read-only parameter set, it needs one number
  * formatter for numbers and another for percents, but no number parsers.
@@ -58,6 +59,31 @@ import java.util.Locale;
  * @author Mark Schmieder
  */
 public final class NaturalEnvironmentInformationComponent extends JxDataViewComponent {
+    // Declare strings for the static part of the settings formatting.
+    public static final String                          AIR_ATTENUATION_LABEL_LABEL     =
+                                                                                    "Air Attenuation";                      //$NON-NLS-1$
+    // Declare default formatted data for each label.
+    public static final String AIR_ATTENUATION_LABEL_DEFAULT   =
+                                                                                      AIR_ATTENUATION_LABEL_LABEL
+                                                                                              + " Off";                     //$NON-NLS-1$
+    public static final String TEMPERATURE_LABEL_LABEL         =
+                                                                                "Temperature";                              //$NON-NLS-1$
+    @SuppressWarnings("nls") public static final String TEMPERATURE_LABEL_DEFAULT       =
+                                                                                  TEMPERATURE_LABEL_LABEL
+                                                                                          + " = 20"
+                                                                                          + StringConstants.DEGREES_CELSIUS;
+    public static final String PRESSURE_LABEL_LABEL            =
+                                                                             "Pressure";                                    //$NON-NLS-1$
+    @SuppressWarnings("nls") public static final String PRESSURE_LABEL_DEFAULT          =
+                                                                               PRESSURE_LABEL_LABEL
+                                                                                       + " = 101325 "
+                                                                                       + PressureUnit.PASCALS
+                                                                                               .label();
+    public static final String RELATIVE_HUMIDITY_LABEL_LABEL   =
+                                                                                      "Relative Humidity";                  //$NON-NLS-1$
+    @SuppressWarnings("nls") public static final String RELATIVE_HUMIDITY_LABEL_DEFAULT =
+                                                                                        RELATIVE_HUMIDITY_LABEL_LABEL
+                                                                                                + " = 50%";
     /**
      *
      */
@@ -75,17 +101,17 @@ public final class NaturalEnvironmentInformationComponent extends JxDataViewComp
     private final Object[][]   _rowData         =
                                         {
                                           {
-                                            NaturalEnvironmentInformationPane.AIR_ATTENUATION_LABEL_DEFAULT },
+                                            AIR_ATTENUATION_LABEL_DEFAULT },
                                           {
-                                            NaturalEnvironmentInformationPane.TEMPERATURE_LABEL_DEFAULT },
+                                            TEMPERATURE_LABEL_DEFAULT },
                                           {
-                                            NaturalEnvironmentInformationPane.PRESSURE_LABEL_DEFAULT },
+                                            PRESSURE_LABEL_DEFAULT },
                                           {
-                                            NaturalEnvironmentInformationPane.RELATIVE_HUMIDITY_LABEL_DEFAULT } };
+                                            RELATIVE_HUMIDITY_LABEL_DEFAULT } };
 
     // Keep a cached copy of the natural environment object, in case the units
     // are changed between predictions.
-    private NaturalEnvironment _naturalEnvironment;
+    private NaturalEnvironmentProperties _naturalEnvironmentProperties;
 
     // Keep track of what units we're using to display, for later conversion.
     private TemperatureUnit    _temperatureUnit;
@@ -105,7 +131,7 @@ public final class NaturalEnvironmentInformationComponent extends JxDataViewComp
         // Always call the superclass constructor first!
         super();
 
-        _naturalEnvironment = new NaturalEnvironment();
+        _naturalEnvironmentProperties = new NaturalEnvironmentProperties();
 
         _temperatureUnit = TemperatureUnit.defaultValue();
         _pressureUnit = PressureUnit.defaultValue();
@@ -155,19 +181,19 @@ public final class NaturalEnvironmentInformationComponent extends JxDataViewComp
     }
 
     protected void reset() {
-        table.setValueAt( NaturalEnvironmentInformationPane.AIR_ATTENUATION_LABEL_DEFAULT, 0, 0 );
-        table.setValueAt( NaturalEnvironmentInformationPane.TEMPERATURE_LABEL_DEFAULT, 1, 0 );
-        table.setValueAt( NaturalEnvironmentInformationPane.PRESSURE_LABEL_DEFAULT, 2, 0 );
-        table.setValueAt( NaturalEnvironmentInformationPane.RELATIVE_HUMIDITY_LABEL_DEFAULT, 3, 0 );
+        table.setValueAt( AIR_ATTENUATION_LABEL_DEFAULT, 0, 0 );
+        table.setValueAt( TEMPERATURE_LABEL_DEFAULT, 1, 0 );
+        table.setValueAt( PRESSURE_LABEL_DEFAULT, 2, 0 );
+        table.setValueAt( RELATIVE_HUMIDITY_LABEL_DEFAULT, 3, 0 );
 
         // Force a repaint event, to display/update the new table values.
         repaint();
     }
 
-    public void setNaturalEnvironment( final NaturalEnvironment naturalEnvironment ) {
+    public void setNaturalEnvironment( final NaturalEnvironmentProperties naturalEnvironmentProperties) {
         // Cache the current Natural Environment in case the Measurement
         // Units change before the next prediction is run.
-        _naturalEnvironment = naturalEnvironment;
+        _naturalEnvironmentProperties = naturalEnvironmentProperties;
     }
 
     public void updateView() {
@@ -176,19 +202,19 @@ public final class NaturalEnvironmentInformationComponent extends JxDataViewComp
 
     public void updateLabels() {
         final String airAttenuationLabel = NaturalEnvironmentInformationPane
-                .getAirAttenuationLabel( _naturalEnvironment );
+                .getAirAttenuationLabel(_naturalEnvironmentProperties);
         table.setValueAt( airAttenuationLabel, 0, 0 );
 
         final String temperatureLabel = NaturalEnvironmentInformationPane
-                .getTemperatureLabel( _naturalEnvironment, _temperatureUnit, numberFormat );
+                .getTemperatureLabel(_naturalEnvironmentProperties, _temperatureUnit, numberFormat );
         table.setValueAt( temperatureLabel, 1, 0 );
 
         final String pressureLabel = NaturalEnvironmentInformationPane
-                .getPressureLabel( _naturalEnvironment, _pressureUnit, numberFormat );
+                .getPressureLabel(_naturalEnvironmentProperties, _pressureUnit, numberFormat );
         table.setValueAt( pressureLabel, 2, 0 );
 
         final String relativeHumidityLabel = NaturalEnvironmentInformationPane
-                .getRelativeHumidityLabel( _naturalEnvironment, percentFormat );
+                .getRelativeHumidityLabel(_naturalEnvironmentProperties, percentFormat );
         table.setValueAt( relativeHumidityLabel, 3, 0 );
 
         // Force a repaint event, to display/update the new table values.

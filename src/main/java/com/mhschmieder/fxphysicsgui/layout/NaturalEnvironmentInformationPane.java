@@ -33,8 +33,8 @@ package com.mhschmieder.fxphysicsgui.layout;
 import com.mhschmieder.fxcontrols.util.RegionUtilities;
 import com.mhschmieder.fxgraphics.paint.ColorUtilities;
 import com.mhschmieder.fxgui.util.GuiUtilities;
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
-import com.mhschmieder.jcommons.lang.StringConstants;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
+import com.mhschmieder.fxphysicsgui.swing.NaturalEnvironmentInformationComponent;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jphysics.measure.PressureUnit;
 import com.mhschmieder.jphysics.measure.TemperatureUnit;
@@ -49,72 +49,42 @@ import java.text.NumberFormat;
 
 public final class NaturalEnvironmentInformationPane extends VBox {
 
-    // Declare strings for the static part of the settings formatting.
-    public static final String                          AIR_ATTENUATION_LABEL_LABEL     =
-                                                                                    "Air Attenuation";                      //$NON-NLS-1$
-
-    public static final String                          TEMPERATURE_LABEL_LABEL         =
-                                                                                "Temperature";                              //$NON-NLS-1$
-
-    public static final String                          PRESSURE_LABEL_LABEL            =
-                                                                             "Pressure";                                    //$NON-NLS-1$
-
-    public static final String                          RELATIVE_HUMIDITY_LABEL_LABEL   =
-                                                                                      "Relative Humidity";                  //$NON-NLS-1$
-
-    // Declare default formatted data for each label.
-    public static final String                          AIR_ATTENUATION_LABEL_DEFAULT   =
-                                                                                      AIR_ATTENUATION_LABEL_LABEL
-                                                                                              + " Off";                     //$NON-NLS-1$
-    @SuppressWarnings("nls") public static final String TEMPERATURE_LABEL_DEFAULT       =
-                                                                                  TEMPERATURE_LABEL_LABEL
-                                                                                          + " = 20"
-                                                                                          + StringConstants.DEGREES_CELSIUS;
-    @SuppressWarnings("nls") public static final String PRESSURE_LABEL_DEFAULT          =
-                                                                               PRESSURE_LABEL_LABEL
-                                                                                       + " = 101325 "
-                                                                                       + PressureUnit.PASCALS
-                                                                                               .label();
-    @SuppressWarnings("nls") public static final String RELATIVE_HUMIDITY_LABEL_DEFAULT =
-                                                                                        RELATIVE_HUMIDITY_LABEL_LABEL
-                                                                                                + " = 50%";
-
-    public static String getAirAttenuationLabel( final NaturalEnvironment naturalEnvironment ) {
-        final String airAttenuationLabel = AIR_ATTENUATION_LABEL_LABEL
-                + ( naturalEnvironment.isAirAttenuationApplied() ? " On" : " Off" ); //$NON-NLS-1$ //$NON-NLS-2$
+    public static String getAirAttenuationLabel( final NaturalEnvironmentProperties naturalEnvironmentProperties) {
+        final String airAttenuationLabel = NaturalEnvironmentInformationComponent.AIR_ATTENUATION_LABEL_LABEL
+                + ( naturalEnvironmentProperties.isAirAttenuationApplied() ? " On" : " Off" ); //$NON-NLS-1$ //$NON-NLS-2$
         return airAttenuationLabel;
     }
 
     @SuppressWarnings("nls")
-    public static String getPressureLabel( final NaturalEnvironment naturalEnvironment,
+    public static String getPressureLabel( final NaturalEnvironmentProperties naturalEnvironmentProperties,
                                            final PressureUnit pressureUnit,
                                            final NumberFormat numberFormat ) {
         numberFormat.setMinimumFractionDigits( 2 );
         numberFormat.setMaximumFractionDigits( 2 );
-        final String pressureLabel = PRESSURE_LABEL_LABEL + " = "
-                + numberFormat.format( naturalEnvironment.getPressure( pressureUnit ) ) + " "
+        final String pressureLabel = NaturalEnvironmentInformationComponent.PRESSURE_LABEL_LABEL + " = "
+                + numberFormat.format( naturalEnvironmentProperties.getPressure( pressureUnit ) ) + " "
                 + pressureUnit.label();
         return pressureLabel;
     }
 
     @SuppressWarnings("nls")
-    public static String getRelativeHumidityLabel( final NaturalEnvironment naturalEnvironment,
+    public static String getRelativeHumidityLabel( final NaturalEnvironmentProperties naturalEnvironmentProperties,
                                                    final NumberFormat percentFormat ) {
         percentFormat.setMinimumFractionDigits( 1 );
         percentFormat.setMaximumFractionDigits( 1 );
-        final String relativeHumidityLabel = RELATIVE_HUMIDITY_LABEL_LABEL + " = "
-                + percentFormat.format( naturalEnvironment.getHumidityRelative() * 0.01d );
+        final String relativeHumidityLabel = NaturalEnvironmentInformationComponent.RELATIVE_HUMIDITY_LABEL_LABEL + " = "
+                + percentFormat.format( naturalEnvironmentProperties.getHumidityRelative() * 0.01d );
         return relativeHumidityLabel;
     }
 
     @SuppressWarnings("nls")
-    public static String getTemperatureLabel( final NaturalEnvironment naturalEnvironment,
+    public static String getTemperatureLabel( final NaturalEnvironmentProperties naturalEnvironmentProperties,
                                               final TemperatureUnit temperatureUnit,
                                               final NumberFormat numberFormat ) {
         numberFormat.setMinimumFractionDigits( 1 );
         numberFormat.setMaximumFractionDigits( 1 );
-        final String temperatureLabel = TEMPERATURE_LABEL_LABEL + " = "
-                + numberFormat.format( naturalEnvironment.getTemperature( temperatureUnit ) )
+        final String temperatureLabel = NaturalEnvironmentInformationComponent.TEMPERATURE_LABEL_LABEL + " = "
+                + numberFormat.format( naturalEnvironmentProperties.getTemperature( temperatureUnit ) )
                 + temperatureUnit.abbreviation();
         return temperatureLabel;
     }
@@ -126,7 +96,7 @@ public final class NaturalEnvironmentInformationPane extends VBox {
 
     // Keep a cached copy of the Natural Environment reference, in case the
     // units are changed between predictions.
-    private NaturalEnvironment _naturalEnvironment;
+    private NaturalEnvironmentProperties _naturalEnvironmentProperties;
 
     // Keep track of what units we're using to display, for later conversion.
     private TemperatureUnit    _temperatureUnit;
@@ -160,10 +130,10 @@ public final class NaturalEnvironmentInformationPane extends VBox {
         _numberFormat = NumberFormat.getNumberInstance( clientProperties.locale );
         _percentFormat = NumberFormat.getPercentInstance( clientProperties.locale );
 
-        _airAttenuationLabel = GuiUtilities.getStatusLabel( AIR_ATTENUATION_LABEL_DEFAULT );
-        _temperatureLabel = GuiUtilities.getStatusLabel( TEMPERATURE_LABEL_DEFAULT );
-        _pressureLabel = GuiUtilities.getStatusLabel( PRESSURE_LABEL_DEFAULT );
-        _relativeHumidityLabel = GuiUtilities.getStatusLabel( RELATIVE_HUMIDITY_LABEL_DEFAULT );
+        _airAttenuationLabel = GuiUtilities.getStatusLabel( NaturalEnvironmentInformationComponent.AIR_ATTENUATION_LABEL_DEFAULT );
+        _temperatureLabel = GuiUtilities.getStatusLabel( NaturalEnvironmentInformationComponent.TEMPERATURE_LABEL_DEFAULT );
+        _pressureLabel = GuiUtilities.getStatusLabel( NaturalEnvironmentInformationComponent.PRESSURE_LABEL_DEFAULT );
+        _relativeHumidityLabel = GuiUtilities.getStatusLabel( NaturalEnvironmentInformationComponent.RELATIVE_HUMIDITY_LABEL_DEFAULT );
 
         getChildren().addAll( _airAttenuationLabel,
                               _temperatureLabel,
@@ -175,10 +145,10 @@ public final class NaturalEnvironmentInformationPane extends VBox {
     }
 
     public void reset() {
-        _airAttenuationLabel.setText( AIR_ATTENUATION_LABEL_DEFAULT );
-        _temperatureLabel.setText( TEMPERATURE_LABEL_DEFAULT );
-        _pressureLabel.setText( PRESSURE_LABEL_DEFAULT );
-        _relativeHumidityLabel.setText( RELATIVE_HUMIDITY_LABEL_DEFAULT );
+        _airAttenuationLabel.setText( NaturalEnvironmentInformationComponent.AIR_ATTENUATION_LABEL_DEFAULT );
+        _temperatureLabel.setText( NaturalEnvironmentInformationComponent.TEMPERATURE_LABEL_DEFAULT );
+        _pressureLabel.setText( NaturalEnvironmentInformationComponent.PRESSURE_LABEL_DEFAULT );
+        _relativeHumidityLabel.setText( NaturalEnvironmentInformationComponent.RELATIVE_HUMIDITY_LABEL_DEFAULT );
     }
 
     public void setForegroundFromBackground( final Color backColor ) {
@@ -195,14 +165,14 @@ public final class NaturalEnvironmentInformationPane extends VBox {
 
     // Set and propagate the Natural Environment reference.
     // NOTE: This should be done only once, to avoid breaking bindings.
-    public void setNaturalEnvironment( final NaturalEnvironment naturalEnvironment ) {
+    public void setNaturalEnvironment( final NaturalEnvironmentProperties naturalEnvironmentProperties) {
         // Cache the current Natural Environment in case the Measurement
         // Units change before the next prediction is run.
-        _naturalEnvironment = naturalEnvironment;
+        _naturalEnvironmentProperties = naturalEnvironmentProperties;
 
         // Load the invalidation listener for the "Natural Environment Changed"
         // binding.
-        _naturalEnvironment.naturalEnvironmentChangedProperty().addListener( 
+        _naturalEnvironmentProperties.naturalEnvironmentChangedProperty().addListener(
             invalidationListener -> updateLabels() );
     }
 
@@ -211,20 +181,20 @@ public final class NaturalEnvironmentInformationPane extends VBox {
     }
 
     public void updateLabels() {
-        final String airAttenuationLabel = getAirAttenuationLabel( _naturalEnvironment );
+        final String airAttenuationLabel = getAirAttenuationLabel(_naturalEnvironmentProperties);
         _airAttenuationLabel.setText( airAttenuationLabel );
 
-        final String temperatureLabel = getTemperatureLabel( _naturalEnvironment,
+        final String temperatureLabel = getTemperatureLabel(_naturalEnvironmentProperties,
                                                              _temperatureUnit,
                                                              _numberFormat );
         _temperatureLabel.setText( temperatureLabel );
 
-        final String pressureLabel = getPressureLabel( _naturalEnvironment,
+        final String pressureLabel = getPressureLabel(_naturalEnvironmentProperties,
                                                        _pressureUnit,
                                                        _numberFormat );
         _pressureLabel.setText( pressureLabel );
 
-        final String relativeHumidityLabel = getRelativeHumidityLabel( _naturalEnvironment,
+        final String relativeHumidityLabel = getRelativeHumidityLabel(_naturalEnvironmentProperties,
                                                                        _percentFormat );
         _relativeHumidityLabel.setText( relativeHumidityLabel );
     }

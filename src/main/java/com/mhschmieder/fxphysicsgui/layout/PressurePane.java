@@ -36,7 +36,7 @@ import com.mhschmieder.fxgui.util.GuiUtilities;
 import com.mhschmieder.fxphysicscontrols.control.PhysicsControlFactory;
 import com.mhschmieder.fxphysicscontrols.control.PressureEditor;
 import com.mhschmieder.fxphysicscontrols.control.PressureSlider;
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.PhysicsConstants;
@@ -145,7 +145,7 @@ public final class PressurePane extends VBox {
     }
 
     public void reset() {
-        _pressureSlider.setPressurePa( NaturalEnvironment.PRESSURE_PA_DEFAULT );
+        _pressureSlider.setPressurePa( NaturalEnvironmentProperties.PRESSURE_PA_DEFAULT );
     }
 
     public void setForegroundFromBackground( final Color backColor ) {

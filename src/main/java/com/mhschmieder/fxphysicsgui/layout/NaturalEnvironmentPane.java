@@ -31,7 +31,7 @@
 package com.mhschmieder.fxphysicsgui.layout;
 
 import com.mhschmieder.fxcontrols.util.RegionUtilities;
-import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironment;
+import com.mhschmieder.fxphysicscontrols.model.NaturalEnvironmentProperties;
 import com.mhschmieder.jcommons.util.ClientProperties;
 import com.mhschmieder.jgraphics.input.ScrollingSensitivity;
 import com.mhschmieder.jphysics.measure.Altitude;
@@ -55,7 +55,7 @@ public final class NaturalEnvironmentPane extends HBox {
     protected AltitudePane    _altitudePane;
 
     // Cache a reference to the global Natural Environment.
-    public NaturalEnvironment naturalEnvironment;
+    public NaturalEnvironmentProperties naturalEnvironmentProperties;
 
     public NaturalEnvironmentPane( final ClientProperties clientProperties ) {
         // Always call the superclass constructor first!
@@ -180,14 +180,14 @@ public final class NaturalEnvironmentPane extends HBox {
 
     // Set and bind the Natural Environment reference.
     // NOTE: This should be done only once, to avoid breaking bindings.
-    public void setNaturalEnvironment( final NaturalEnvironment pNaturalEnvironment ) {
+    public void setNaturalEnvironment( final NaturalEnvironmentProperties pNaturalEnvironmentProperties) {
         // Cache the Natural Environment reference.
-        naturalEnvironment = pNaturalEnvironment;
+        naturalEnvironmentProperties = pNaturalEnvironmentProperties;
 
         // Forward this reference's observables to the subsidiary panes.
-        _temperaturePane.setTemperatureKProperty( naturalEnvironment.temperatureKProperty() );
-        _humidityPane.setHumidityRelativeProperty( naturalEnvironment.humidityRelativeProperty() );
-        _pressurePane.setPressurePaProperty( naturalEnvironment.pressurePaProperty() );
+        _temperaturePane.setTemperatureKProperty( naturalEnvironmentProperties.temperatureKProperty() );
+        _humidityPane.setHumidityRelativeProperty( naturalEnvironmentProperties.humidityRelativeProperty() );
+        _pressurePane.setPressurePaProperty( naturalEnvironmentProperties.pressurePaProperty() );
     }
 
     /**
