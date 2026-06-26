@@ -33,7 +33,7 @@ package com.mhschmieder.fxphysicsgui.stage;
 import com.mhschmieder.fxgui.stage.XStage;
 import com.mhschmieder.fxphysicscontrols.action.MeasurementUnitsActions;
 import com.mhschmieder.fxphysicscontrols.control.MeasurementUnitsToolBar;
-import com.mhschmieder.fxphysicscontrols.model.MeasurementUnits;
+import com.mhschmieder.fxphysicscontrols.model.MeasurementUnitProperties;
 import com.mhschmieder.fxphysicsgui.layout.MeasurementUnitsPane;
 import com.mhschmieder.jcommons.branding.ProductBranding;
 import com.mhschmieder.jcommons.util.ClientProperties;
@@ -166,8 +166,8 @@ public final class MeasurementUnitsStage extends XStage {
 
     // Set and propagate the Measurement Units reference.
     // NOTE: This should be done only once, to avoid breaking bindings.
-    public void setMeasurementUnits( final MeasurementUnits pMeasurementUnits ) {
+    public void setMeasurementUnits( final MeasurementUnitProperties pMeasurementUnitProperties) {
         // Forward this reference to the Measurement Units Pane.
-        _measurementUnitsPane.setMeasurementUnits( pMeasurementUnits );
+        _measurementUnitsPane.setMeasurementUnits(pMeasurementUnitProperties);
     }
 }
